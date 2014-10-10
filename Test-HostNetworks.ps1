@@ -1,34 +1,36 @@
 ﻿$TestVM = Get-VM vlan_connectivity_test
-$VMHosts = "usscpvmh01a.sjm.com","usscpvmh01b.sjm.com","usscpvmh01c.sjm.com"
+$ClusterName = "USSP - Production 04 - Database"
+$ESXHosts = Get-Cluster "USSP - Production 04 - Database" | Get-VMHost
 $Report = "temp.csv"
 
 Write-Output "Host,Network Name,VLAN ID,IP Address,Status" > $Report
 
-do {$TestVM = Get-VM vlan_connectivity_test
+$ESXHosts | ForEach-Object {
 
-ForEach ($VMHost in $VMHosts) {
-
+    $VMHost = $_
+    $HostsName = $VMHost.Name
+    
     Write-Host "Testing Connectivity on Host $VMHost"
 
-    Write-Host "Moving Test VM to $VMHost"
+    Write-Host "Moving Test VM to " $VMHost.Name
 
-    $GetSubnet = Get-VMHost $VMHosts | Get-VMHostNetworkAdapter -Name vmk0
+    $GetSubnet = $VMHosts | Get-VMHostNetworkAdapter -Name vmk0
     $Subnet = ($GetSubnet.IP.Split(".")[0])+"."+($GetSubnet.IP.Split(".")[1]+".")
 
     $TestVM | Move-VM -Destination $VMHost > $null
 
-    $VLANs = Get-VMHost $VMHost | Get-VirtualPortGroup | Where {$_.Port -eq $null}
+    $VLANs = $VMHost | Get-VirtualPortGroup | Where {$_.Port -eq $null}
 
     $VLANs | ForEach-Object {
         $VLAN = $_.VLanId
         $VLANName = $_.Name
-        #$Subnet = "10.1."
+        $Subnet = "10.1."
         $Gateway = $Subnet+$VLAN+".1"
         $Netmask = "255.255.255.0"
         $IPAddress = $null
         $Octet = 200
 
-        Write-Host "Testing Network $VLANName on $VMHost"
+        Write-Host "Testing Network $VLANName on " = $VMHost.Name
 
         $TestVM | Get-NetworkAdapter | Set-NetworkAdapter -NetworkName $VLANName -Confirm:$false > $null
 
@@ -52,7 +54,7 @@ ForEach ($VMHost in $VMHosts) {
 
         $TestVM | Invoke-VMScript -ScriptText "route del default gw $Gateway eth0" -ScriptType Bash -GuestUser root -GuestPassword vl@nt3sting > $null
 
-        Write-Output "$VMHost,$VLANName,$VLAN,$IPAddress,$Status" >> $Report
+        Write-Output "$HostsName,$VLANName,$VLAN,$IPAddress,$Status" >> $Report
     }
 }
 

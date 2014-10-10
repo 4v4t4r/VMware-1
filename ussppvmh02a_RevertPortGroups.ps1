@@ -1,23 +1,17 @@
-﻿$VMhost = "ussppvmh02a.sjm.com" 
+﻿$VMhost = "usspdvmh01c.sjm.com" 
 #$Oldvlan59 = "VLAN59" 
-#$Newvlan59 = "vDS_VLAN59_PROD"
+#$Newvlan59 = "vDS_VLAN59_DEV"
 
-Get-VMhost $VMhost |Get-VM |Get-NetworkAdapter |Where {$_.NetworkName -eq "vDS_VLAN13_PROD" } |Set-NetworkAdapter -NetworkName "VLAN13" -Confirm:$false
-Get-VMhost $VMhost |Get-VM |Get-NetworkAdapter |Where {$_.NetworkName -eq "vDS_VLAN14_PROD" } |Set-NetworkAdapter -NetworkName "VLAN14" -Confirm:$false
-Get-VMhost $VMhost |Get-VM |Get-NetworkAdapter |Where {$_.NetworkName -eq "vDS_VLAN16_PROD" } |Set-NetworkAdapter -NetworkName "VLAN16" -Confirm:$false
-Get-VMhost $VMhost |Get-VM |Get-NetworkAdapter |Where {$_.NetworkName -eq "vDS_VLAN18_PROD" } |Set-NetworkAdapter -NetworkName "VLAN18" -Confirm:$false
-Get-VMhost $VMhost |Get-VM |Get-NetworkAdapter |Where {$_.NetworkName -eq "vDS_VLAN21_PROD" } |Set-NetworkAdapter -NetworkName "VLAN21" -Confirm:$false
-Get-VMhost $VMhost |Get-VM |Get-NetworkAdapter |Where {$_.NetworkName -eq "vDS_VLAN22_PROD" } |Set-NetworkAdapter -NetworkName "VLAN22" -Confirm:$false
-Get-VMhost $VMhost |Get-VM |Get-NetworkAdapter |Where {$_.NetworkName -eq "vDS_VLAN28_PROD" } |Set-NetworkAdapter -NetworkName "VLAN28" -Confirm:$false
-Get-VMhost $VMhost |Get-VM |Get-NetworkAdapter |Where {$_.NetworkName -eq "vDS_VLAN29_PROD" } |Set-NetworkAdapter -NetworkName "VLAN29" -Confirm:$false
-Get-VMhost $VMhost |Get-VM |Get-NetworkAdapter |Where {$_.NetworkName -eq "vDS_VLAN31_PROD" } |Set-NetworkAdapter -NetworkName "VLAN31" -Confirm:$false
-Get-VMhost $VMhost |Get-VM |Get-NetworkAdapter |Where {$_.NetworkName -eq "vDS_VLAN35_PROD" } |Set-NetworkAdapter -NetworkName "VLAN35" -Confirm:$false
-Get-VMhost $VMhost |Get-VM |Get-NetworkAdapter |Where {$_.NetworkName -eq "vDS_VLAN4_PROD" } |Set-NetworkAdapter -NetworkName "VLAN4" -Confirm:$false
-Get-VMhost $VMhost |Get-VM |Get-NetworkAdapter |Where {$_.NetworkName -eq "vDS_VLAN5_PROD" } |Set-NetworkAdapter -NetworkName "VLAN5" -Confirm:$false
-Get-VMhost $VMhost |Get-VM |Get-NetworkAdapter |Where {$_.NetworkName -eq "vDS_VLAN52_PROD" } |Set-NetworkAdapter -NetworkName "VLAN52" -Confirm:$false
-Get-VMhost $VMhost |Get-VM |Get-NetworkAdapter |Where {$_.NetworkName -eq "vDS_VLAN53_PROD" } |Set-NetworkAdapter -NetworkName "VLAN53" -Confirm:$false
-Get-VMhost $VMhost |Get-VM |Get-NetworkAdapter |Where {$_.NetworkName -eq "vDS_VLAN57_PROD" } |Set-NetworkAdapter -NetworkName "VLAN57" -Confirm:$false
-Get-VMhost $VMhost |Get-VM |Get-NetworkAdapter |Where {$_.NetworkName -eq "vDS_VLAN58_PROD" } |Set-NetworkAdapter -NetworkName "VLAN58" -Confirm:$false
-Get-VMhost $VMhost |Get-VM |Get-NetworkAdapter |Where {$_.NetworkName -eq "vDS_VLAN59_PROD" } |Set-NetworkAdapter -NetworkName "VLAN59" -Confirm:$false
-Get-VMhost $VMhost |Get-VM |Get-NetworkAdapter |Where {$_.NetworkName -eq "vDS_VLAN6_PROD" } |Set-NetworkAdapter -NetworkName "VLAN6" -Confirm:$false
-Get-VMhost $VMhost |Get-VM |Get-NetworkAdapter |Where {$_.NetworkName -eq "vDS_VLAN8_PROD" } |Set-NetworkAdapter -NetworkName "VLAN8" -Confirm:$false
+Get-VMhost $VMhost |Get-VM |Get-NetworkAdapter |Where {$_.NetworkName -eq "vDS_VLAN13_DEV" } |Set-NetworkAdapter -NetworkName "VLAN13_std" -Confirm:$false
+Get-VMhost $VMhost |Get-VM |Get-NetworkAdapter |Where {$_.NetworkName -eq "vDS_VLAN14_DEV" } |Set-NetworkAdapter -NetworkName "VLAN14_std" -Confirm:$false
+Get-VMhost $VMhost |Get-VM |Get-NetworkAdapter |Where {$_.NetworkName -eq "vDS_VLAN18_DEV" } |Set-NetworkAdapter -NetworkName "VLAN18_std" -Confirm:$false
+Get-VMhost $VMhost |Get-VM |Get-NetworkAdapter |Where {$_.NetworkName -eq "vDS_VLAN22_DEV" } |Set-NetworkAdapter -NetworkName "VLAN22_std" -Confirm:$false
+Get-VMhost $VMhost |Get-VM |Get-NetworkAdapter |Where {$_.NetworkName -eq "vDS_VLAN31_DEV" } |Set-NetworkAdapter -NetworkName "VLAN31_std" -Confirm:$false
+Get-VMhost $VMhost |Get-VM |Get-NetworkAdapter |Where {$_.NetworkName -eq "vDS_VLAN35_DEV" } |Set-NetworkAdapter -NetworkName "VLAN35_std" -Confirm:$false
+Get-VMhost $VMhost |Get-VM |Get-NetworkAdapter |Where {$_.NetworkName -eq "vDS_VLAN4_DEV" } |Set-NetworkAdapter -NetworkName "VLAN4_std" -Confirm:$false
+Get-VMhost $VMhost |Get-VM |Get-NetworkAdapter |Where {$_.NetworkName -eq "vDS_VLAN5_DEV" } |Set-NetworkAdapter -NetworkName "VLAN5_std" -Confirm:$false
+Get-VMhost $VMhost |Get-VM |Get-NetworkAdapter |Where {$_.NetworkName -eq "vDS_VLAN57_DEV" } |Set-NetworkAdapter -NetworkName "VLAN57_std" -Confirm:$false
+Get-VMhost $VMhost |Get-VM |Get-NetworkAdapter |Where {$_.NetworkName -eq "vDS_VLAN58_DEV" } |Set-NetworkAdapter -NetworkName "VLAN58_std" -Confirm:$false
+Get-VMhost $VMhost |Get-VM |Get-NetworkAdapter |Where {$_.NetworkName -eq "vDS_VLAN59_DEV" } |Set-NetworkAdapter -NetworkName "VLAN59_std" -Confirm:$false
+Get-VMhost $VMhost |Get-VM |Get-NetworkAdapter |Where {$_.NetworkName -eq "vDS_VLAN6_DEV" } |Set-NetworkAdapter -NetworkName "VLAN6_std" -Confirm:$false
+Get-VMhost $VMhost |Get-VM |Get-NetworkAdapter |Where {$_.NetworkName -eq "vDS_VLAN8_DEV" } |Set-NetworkAdapter -NetworkName "VLAN8_std" -Confirm:$false
